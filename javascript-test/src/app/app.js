@@ -13,6 +13,7 @@ angular.module('app', [])
     $scope.newColumnName = '';
     $scope.addColumn = function(name) {
       state.addColumn(name);
+      $scope.newColumnName = '';
     };
 
     $scope.isValidColumnName = function(name) {
@@ -33,7 +34,11 @@ angular.module('app', [])
 
     $scope.getState = function() {
       return state.getOriginalState();
-    }
+    };
+
+    $scope.moveRight = function(row, columnIndex, color) {
+      state.moveBoxRight(row, columnIndex, color);
+    };
   }])
   .service('StateService',['InitialDataService', function(InitialData) {
     var data = InitialData.getInitialData();
@@ -85,6 +90,21 @@ angular.module('app', [])
       });
 
       return originalState;
+    };
+
+    this.moveBoxRight = function(row, columnIndex, color) {
+      var column = row.columns[columnIndex];
+      var boxIndex = column.boxes.indexOf(color);
+      if (boxIndex >= 0) {
+        column.boxes.splice(boxIndex, 1);
+        state.headers[columnIndex].boxCount--;
+      }
+
+      // move
+      var nextColumnIndex = columnIndex === row.columns.length - 1 ? 0 : columnIndex + 1;
+      var nextColumn = row.columns[nextColumnIndex];
+      addBoxColorToColumnAlongWithSequence(nextColumn, color, row.sequence);
+      state.headers[nextColumnIndex].boxCount++;
     };
 
     function getStateFromRow(row) {

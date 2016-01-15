@@ -7,8 +7,10 @@
         </thead>
         <tbody>
             <tr ng-repeat="row in getRows()">
-                <td ng-repeat="column in row.columns">
-                    <div class="box {{box}}" ng-repeat="box in column.boxes">[{{box | limitTo:1}}]</div>
+                <td ng-repeat="(columnIndex, column) in row.columns">
+                    <div class="box {{color}}"
+                         ng-repeat="color in column.boxes"
+                         ng-click="moveRight(row, columnIndex, color)">[{{color | limitTo:1}}]</div>
                 </td>
             </tr>
         </tbody>
