@@ -1,3 +1,8 @@
+.container {
+    margin: 10px;
+}
+
+/* table part */
 table, table td, table th {
     border: 1px solid black;
 }
@@ -25,4 +30,12 @@ table th {
 
 .blue {
     background-color: blue;
+}
+
+/* add column part */
+
+/* show state part */
+textarea {
+    min-width: 250px;
+    min-height: 200px;
 }

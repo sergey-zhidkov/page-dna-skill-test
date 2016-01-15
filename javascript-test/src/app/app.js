@@ -9,12 +9,31 @@ angular.module('app', [])
     $scope.getRows = function() {
       return state.getRows();
     };
-    console.log(state);
+
+    $scope.newColumnName = '';
+    $scope.addColumn = function(name) {
+      state.addColumn(name);
+    };
+
+    $scope.isValidColumnName = function(name) {
+      if (name === '') {
+        return false;
+      }
+      if (state.isDuplicate(name)) {
+        return false;
+      }
+      if (!/^[A-FN-Z]/.test(name)) {
+        return false;
+      }
+      if (name.length > 1 && !/^[A-FN-Z][-_]\d{1,4}$/.test(name)) {
+        return false;
+      }
+      return true;
+    };
   }])
   .service('StateService',['InitialDataService', function(InitialData) {
     var data = InitialData.getInitialData();
 
-    var headers = [{name: 'A', boxCount: 0}, {name: 'B', boxCount: 0}];
     var state = {
       headers: [{name: 'A', boxCount: 0}, {name: 'B', boxCount: 0}],
       rows: []
@@ -29,6 +48,25 @@ angular.module('app', [])
 
     this.getRows = function() {
       return state.rows;
+    };
+
+    this.addColumn = function(name) {
+      state.headers.push({name: name, boxCount: 0});
+      state.rows.forEach(function(row) {
+        row.columns.push({
+          boxes: []
+                         });
+      });
+    };
+
+    this.isDuplicate = function(name) {
+      var headers = state.headers;
+      for (var i = 0; i < headers.length; i++) {
+        if (headers[i].name === name) {
+          return true;
+        }
+      }
+      return false;
     };
 
     function fillRows() {
