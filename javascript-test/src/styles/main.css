@@ -1,5 +1,5 @@
 .container {
-    margin: 10px;
+    margin: 2rem;
 }
 
 /* table part */
@@ -8,34 +8,51 @@ table, table td, table th {
 }
 
 table th {
-    min-width: 120px;
+    font-size: 1.5rem;
+    min-width: 14rem;
+    background-color: bisque;
 }
 
 .box {
     display: inline-block;
-    margin: 1px;
+    margin: 0.2rem;
+    font-size: 2rem;
+    color: white;
+    font-weight: bold;
+    border-radius: 0.3rem;
+}
+
+.box:hover {
+    cursor: pointer;
+}
+
+.box::before {
+    content: '[';
+}
+.box::after {
+    content: ']';
 }
 
 .yellow {
-    background-color: yellow;
+    background-color: #ffd300;
 }
 
 .red {
-    background-color: red;
+    background-color: #de0000;
 }
 
 .green {
-    background-color: green;
+    background-color: #249600;
 }
 
 .blue {
-    background-color: blue;
+    background-color: #001a78;
 }
 
 /* add column part */
 
 /* show state part */
 textarea {
-    min-width: 250px;
-    min-height: 200px;
+    min-width: 15rem;
+    min-height: 10rem;
 }

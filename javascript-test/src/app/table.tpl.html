@@ -10,7 +10,7 @@
                 <td ng-repeat="(columnIndex, column) in row.columns">
                     <div class="box {{color}}"
                          ng-repeat="color in column.boxes"
-                         ng-click="moveRight(row, columnIndex, color)">[{{color | limitTo:1}}]</div>
+                         ng-click="moveRight(row, columnIndex, color)">{{color | limitTo:1 | uppercase}}</div>
                 </td>
             </tr>
         </tbody>
