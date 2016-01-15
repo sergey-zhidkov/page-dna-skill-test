@@ -1,0 +1,28 @@
+table, table td, table th {
+    border: 1px solid black;
+}
+
+table th {
+    min-width: 120px;
+}
+
+.box {
+    display: inline-block;
+    margin: 1px;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.red {
+    background-color: red;
+}
+
+.green {
+    background-color: green;
+}
+
+.blue {
+    background-color: blue;
+}

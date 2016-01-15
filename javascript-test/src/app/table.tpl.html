@@ -1,0 +1,16 @@
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th ng-repeat="header in getHeaders()">{{header.name}} ({{header.boxCount}})</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="row in getRows()">
+                <td ng-repeat="column in row.columns">
+                    <div class="box {{box}}" ng-repeat="box in column.boxes">[{{box | limitTo:1}}]</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

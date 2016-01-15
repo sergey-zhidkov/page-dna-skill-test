@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>UI Implementation Test</title>
+
+    <link rel="stylesheet" href="styles/main.css"/>
 </head>
 <body ng-controller="AppCtrl">
     <div table></div>
+    <div ng-include="'app/table.tpl.html'"></div>
     <div ng-include="'app/add-column-form.tpl.html'"></div>
     <div ng-include="'app/show-state.tpl.html'"></div>
     <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
