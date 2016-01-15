@@ -1,0 +1,18 @@
+{
+  "name": "javascript-test",
+  "homepage": "https://github.com/sergey-zhidkov/page-dna-skills-test",
+  "authors": [
+    "sergey-zhidkov <sergey.zhidkov@outlook.com>"
+  ],
+  "description": "UI Implementation Test",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
