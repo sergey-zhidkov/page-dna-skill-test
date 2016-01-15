@@ -30,6 +30,10 @@ angular.module('app', [])
       }
       return true;
     };
+
+    $scope.getState = function() {
+      return state.getOriginalState();
+    }
   }])
   .service('StateService',['InitialDataService', function(InitialData) {
     var data = InitialData.getInitialData();
@@ -68,6 +72,45 @@ angular.module('app', [])
       }
       return false;
     };
+
+    this.getOriginalState = function() {
+      var originalState = [];
+      var newState;
+      state.rows.forEach(function(row) {
+        newState = {
+          sequence: row.sequence,
+          state: getStateFromRow(row)
+        };
+        originalState.push(newState);
+      });
+
+      return originalState;
+    };
+
+    function getStateFromRow(row) {
+      var resultState = {};
+      var headers = state.headers;
+      var columns = row.columns;
+      for (var i = 0; i < columns.length; i++) {
+        var boxes = columns[i].boxes;
+        var columnName = headers[i].name;
+        boxes.forEach(function(color) {
+          resultState[color] = columnName;
+        });
+      }
+
+      return sortKeys(resultState);
+    }
+
+    function sortKeys(obj) {
+      var sorted = {};
+      var keys = Object.keys(obj);
+      keys.sort();
+      keys.forEach(function(key) {
+        sorted[key] = obj[key];
+      });
+      return sorted;
+    }
 
     function fillRows() {
       var rows = state.rows;
